@@ -11,24 +11,24 @@
 
 <style>
 :root{
-  /* Warm neutrals */
-  --ink: rgba(46,38,31,.92);       /* cacao ink */
-  --muted: rgba(46,38,31,.68);
-  --line: rgba(46,38,31,.16);
+  --ink: rgba(25,20,16,.92);
+  --muted: rgba(25,20,16,.66);
+  --line: rgba(25,20,16,.14);
 
-  --sand-1:#fbf2e7;
-  --sand-2:#f3e6d7;
-  --sand-3:#ead8c5;
+  /* Premium + brighter */
+  --bg-a:#fff1e6;   /* warm peach */
+  --bg-b:#f1f6ff;   /* airy blue */
+  --bg-c:#f7f0ff;   /* soft lilac */
 
-  --paper:#ffffff;
-  --paper-soft:#fffaf3;
+  --paper: rgba(255,255,255,.80);
+  --paper2: rgba(255,255,255,.62);
 
-  --radius:30px;
-  --shadow:0 40px 90px rgba(0,0,0,.10);
+  --radius:34px;
+  --shadow: 0 26px 70px rgba(0,0,0,.10);
 
   --display:"Bodoni Moda", serif;
   --serif:"Cormorant Garamond", serif;
-  --sans:Inter, sans-serif;
+  --sans:Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
 }
 
 *{box-sizing:border-box;}
@@ -36,13 +36,16 @@ html,body{height:100%;}
 
 body{
   margin:0;
-  font-family:var(--serif);
   color:var(--ink);
-  background:
-    radial-gradient(1200px 700px at 50% -10%, rgba(255,255,255,.65), transparent 60%),
-    linear-gradient(180deg, var(--sand-1), var(--sand-2) 60%, var(--sand-3));
-  background-attachment: fixed;
+  font-family:var(--serif);
   -webkit-font-smoothing:antialiased;
+
+  background:
+    radial-gradient(900px 520px at 18% 10%, rgba(255,206,168,.55), transparent 60%),
+    radial-gradient(900px 520px at 82% 16%, rgba(184,214,255,.52), transparent 62%),
+    radial-gradient(900px 520px at 68% 88%, rgba(220,198,255,.44), transparent 58%),
+    linear-gradient(180deg, var(--bg-a), var(--bg-b) 56%, var(--bg-c));
+  background-attachment: fixed;
 }
 
 .wrap{
@@ -50,34 +53,44 @@ body{
   display:flex;
   align-items:center;
   justify-content:center;
-  padding:80px 20px;
+  padding:90px 18px;
 }
 
 .card{
-  width:min(880px,100%);
+  width:min(1120px, 100%);
   text-align:center;
-  padding:78px 64px 64px;
+  padding:74px 64px 56px;
   border-radius:var(--radius);
-  background:var(--paper-soft);
-  box-shadow:var(--shadow);
-  border:1px solid rgba(0,0,0,.03);
+  background: var(--paper);
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(0,0,0,.05);
   position:relative;
+  overflow:hidden;
 }
 
-/* Language switch */
+.card:before{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  background: radial-gradient(700px 360px at 50% -10%, rgba(255,255,255,.55), transparent 60%);
+  pointer-events:none;
+}
+
 .lang{
   position:absolute;
-  top:18px;
-  right:18px;
+  top:16px;
+  right:16px;
   display:flex;
   gap:8px;
   align-items:center;
   padding:8px;
   border-radius:999px;
-  background:rgba(255,255,255,.65);
-  border:1px solid rgba(0,0,0,.05);
-  backdrop-filter: blur(6px);
+  background: rgba(255,255,255,.62);
+  border: 1px solid rgba(0,0,0,.06);
+  backdrop-filter: blur(8px);
+  z-index:2;
 }
+
 .lang button{
   font-family:var(--sans);
   font-size:11px;
@@ -85,127 +98,155 @@ body{
   text-transform:uppercase;
   border:0;
   background:transparent;
-  padding:6px 10px;
+  padding:7px 10px;
   border-radius:999px;
   cursor:pointer;
-  color:rgba(46,38,31,.65);
+  color: rgba(25,20,16,.60);
 }
+
 .lang button.active{
-  color:var(--ink);
-  background:rgba(234,216,197,.55);
-  border:1px solid rgba(46,38,31,.10);
+  color: var(--ink);
+  background: rgba(255,255,255,.82);
+  border:1px solid rgba(0,0,0,.08);
+}
+
+.brand{
+  position:relative;
+  z-index:1;
 }
 
 .logo{
-  width:min(520px,95%);
-  margin:0 auto 18px;
+  width:min(520px, 92%);
+  height:auto;
+  margin:0 auto 14px;
   display:block;
+}
+
+h1{
+  font-family:var(--display);
+  font-size:clamp(38px,4.6vw,62px);
+  font-weight:400;
+  line-height:1.05;
+  margin:0 0 12px;
+}
+
+.tagline{
+  font-size:20px;
+  line-height:1.9;
+  color:var(--muted);
+  max-width:70ch;
+  margin:0 auto 22px;
+}
+
+.divider{
+  width:170px;
+  height:1px;
+  background:linear-gradient(90deg, transparent, rgba(25,20,16,.22), transparent);
+  margin:26px auto 30px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap:14px;
+  margin:0 auto 10px;
+  position:relative;
+  z-index:1;
+}
+
+.box{
+  text-align:left;
+  padding:18px 18px 16px;
+  border-radius:22px;
+  background: var(--paper2);
+  border: 1px solid rgba(0,0,0,.06);
+  transition: transform .22s ease, background .22s ease, border-color .22s ease;
+}
+
+.box:hover{
+  transform: translateY(-2px);
+  background: rgba(255,255,255,.74);
+  border-color: rgba(0,0,0,.09);
 }
 
 .kicker{
   font-family:var(--sans);
   font-size:11px;
-  letter-spacing:.35em;
+  letter-spacing:.28em;
   text-transform:uppercase;
-  color:rgba(46,38,31,.55);
-  margin:8px 0 12px;
+  color: rgba(25,20,16,.55);
+  margin-bottom:8px;
 }
 
-h1{
-  font-family:var(--display);
-  font-size:clamp(40px,5vw,64px);
-  font-weight:400;
-  line-height:1.05;
-  margin:0 0 16px;
-}
-
-.tagline{
+.box h2{
   font-family:var(--serif);
-  font-size:20px;
-  line-height:1.9;
-  color:var(--muted);
-  max-width:66ch;
-  margin:0 auto 28px;
+  font-size:22px;
+  font-weight:600;
+  margin:0 0 8px;
 }
 
-.divider{
-  width:140px;
-  height:1px;
-  background:linear-gradient(90deg, transparent, rgba(46,38,31,.22), transparent);
-  margin:28px auto 34px;
-}
-
-.copy{
-  font-family:var(--serif);
-  font-size:18px;
-  line-height:2;
-  color:var(--muted);
-  max-width:66ch;
-  margin:0 auto 34px;
+.box p{
+  margin:0 0 14px;
+  color: var(--muted);
+  line-height:1.75;
+  font-size:16px;
 }
 
 .actions{
   display:flex;
-  gap:14px;
-  justify-content:center;
+  gap:10px;
   flex-wrap:wrap;
-  margin-top:8px;
+  align-items:center;
 }
 
 .btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
   font-family:var(--sans);
   font-size:12px;
-  letter-spacing:.18em;
+  letter-spacing:.16em;
   text-transform:uppercase;
-  padding:14px 22px;
+  padding:12px 16px;
   border-radius:999px;
-  border:1px solid rgba(46,38,31,.22);
-  background:transparent;
-  cursor:pointer;
+  border:1px solid rgba(25,20,16,.18);
+  background: transparent;
+  color: var(--ink);
   text-decoration:none;
-  color:var(--ink);
-  transition:.25s ease;
+  cursor:pointer;
+  transition: background .22s ease, transform .22s ease;
 }
+
 .btn.primary{
-  background:rgba(234,216,197,.55);
+  background: rgba(255,255,255,.82);
 }
+
 .btn:hover{
-  background:rgba(234,216,197,.85);
+  background: rgba(255,255,255,.94);
+  transform: translateY(-1px);
 }
 
-.section{
-  margin-top:26px;
-}
-
-input[type="email"]{
-  width:min(460px,100%);
-  padding:16px 20px;
-  border-radius:999px;
-  border:1px solid rgba(46,38,31,.20);
-  font-family:var(--sans);
-  font-size:14px;
-  margin:12px 0 10px;
-  outline:none;
-  background:rgba(255,255,255,.8);
-}
-
-.micro{
+.note{
+  margin-top:18px;
   font-family:var(--sans);
   font-size:12px;
-  color:rgba(46,38,31,.52);
-  margin-bottom:14px;
+  color: rgba(25,20,16,.52);
+  position:relative;
+  z-index:1;
 }
 
 footer{
-  margin-top:44px;
+  margin-top:26px;
   font-family:var(--sans);
   font-size:12px;
-  color:rgba(46,38,31,.50);
+  color: rgba(25,20,16,.52);
+  position:relative;
+  z-index:1;
 }
 
-@media(max-width:720px){
-  .card{padding:64px 22px 54px;}
-  .lang{top:14px; right:14px;}
+@media(max-width:980px){
+  .grid{grid-template-columns:1fr;}
+  .card{padding:64px 22px 50px;}
 }
 </style>
 </head>
@@ -220,49 +261,55 @@ footer{
       <button type="button" data-lang="fr">FR</button>
     </div>
 
-    <!-- Aquí irá tu logo (SVG/PNG transparente) -->
-    <img class="logo" src="logo-consciella.svg" alt="Consciella">
+    <div class="brand">
+      <!-- Tu logo (ya renombrado y subido) -->
+      <img class="logo" src="logo-consciella.png" alt="Consciella">
 
-    <h1 data-i18n="headline">Modern self-care. Kept simple.</h1>
+      <h1 data-i18n="headline">Premium structure for modern calm.</h1>
+      <p class="tagline" data-i18n="tagline">
+        Simple rituals that fit real life — low effort, repeatable, and designed to reduce daily overload.
+      </p>
 
-    <p class="tagline" data-i18n="tagline">
-      Small repeatable rituals to reduce daily activation and support long-term nervous system hygiene.
-    </p>
-
-    <div class="actions">
-      <!-- CTA principal: tu link de Ringana -->
-      <a class="btn primary" id="shopLink" href="RINGANA_LINK_AQUI" target="_blank" rel="noopener" data-i18n="shop">
-        Shop
-      </a>
-
-      <!-- CTA secundario: asesoramiento -->
-      <a class="btn" href="mailto:hello@consciella.com" data-i18n="advice">
-        Get guidance
-      </a>
+      <div class="divider"></div>
     </div>
 
-    <div class="divider"></div>
+    <section class="grid" aria-label="Main links">
 
-    <div class="kicker" data-i18n="newsletterKicker">Weekly newsletter</div>
-
-    <p class="copy" data-i18n="newsletterCopy">
-      One clear idea, one 5-minute reset. Minimal, grounded, realistic. Soft reference to Night Calm included.
-    </p>
-
-    <form action="https://formspree.io/f/XXXXXXX" method="POST">
-      <input type="email" name="email" placeholder="Email" required data-i18n-placeholder="emailPlaceholder">
-      <input type="hidden" name="_subject" value="Consciella — Newsletter signup">
-      <input type="text" name="_gotcha" style="display:none">
-
-      <div class="micro" data-i18n="micro">
-        No spam. Unsubscribe anytime.
+      <!-- 1) SHOP -->
+      <div class="box">
+        <div class="kicker" data-i18n="kShop">Shop</div>
+        <h2 data-i18n="tShop">My shop</h2>
+        <p data-i18n="dShop">A clean selection of essentials. Quality-first, no endless browsing.</p>
+        <div class="actions">
+          <a class="btn primary" href="RINGANA_LINK_AQUI" target="_blank" rel="noopener" data-i18n="bShop">Shop</a>
+        </div>
       </div>
 
-      <div class="actions">
-        <button class="btn primary" type="submit" data-i18n="subscribe">Subscribe</button>
-        <a class="btn" href="https://wa.me/33XXXXXXXXX" target="_blank" rel="noopener" data-i18n="whatsapp">WhatsApp</a>
+      <!-- 2) NEWSLETTER (Substack) -->
+      <div class="box">
+        <div class="kicker" data-i18n="kNews">Newsletter</div>
+        <h2 data-i18n="tNews">Weekly reset</h2>
+        <p data-i18n="dNews">One idea + one 5-minute practice. Minimal, practical, and easy to keep.</p>
+        <div class="actions">
+          <a class="btn primary" href="https://consciella.substack.com/?utm_source=edit-profile-visibility" target="_blank" rel="noopener" data-i18n="bNews">
+            Subscribe
+          </a>
+        </div>
+        <div class="note" data-i18n="nNews">Hosted on Substack.</div>
       </div>
-    </form>
+
+      <!-- 3) 1:1 -->
+      <div class="box">
+        <div class="kicker" data-i18n="k1to1">1:1</div>
+        <h2 data-i18n="t1to1">Private guidance</h2>
+        <p data-i18n="d1to1">A short, focused session to build a simple routine that fits your week.</p>
+        <div class="actions">
+          <a class="btn primary" href="BOOKING_LINK_AQUI" target="_blank" rel="noopener" data-i18n="b1to1">Book</a>
+          <a class="btn" href="https://wa.me/34XXXXXXXXX" target="_blank" rel="noopener" data-i18n="bWhatsApp">WhatsApp</a>
+        </div>
+      </div>
+
+    </section>
 
     <footer>
       © <span id="year"></span> Consciella
@@ -276,74 +323,90 @@ footer{
 
   const i18n = {
     en: {
-      headline: "Modern self-care. Kept simple.",
-      tagline: "Small repeatable rituals to reduce daily activation and support long-term nervous system hygiene.",
-      shop: "Shop",
-      advice: "Get guidance",
-      newsletterKicker: "Weekly newsletter",
-      newsletterCopy: "One clear idea, one 5-minute reset. Minimal, grounded, realistic. Soft reference to Night Calm included.",
-      emailPlaceholder: "Email address",
-      micro: "No spam. Unsubscribe anytime.",
-      subscribe: "Subscribe",
-      whatsapp: "WhatsApp"
+      headline: "Premium structure for modern calm.",
+      tagline: "Simple rituals that fit real life — low effort, repeatable, and designed to reduce daily overload.",
+
+      kShop: "Shop",
+      tShop: "My shop",
+      dShop: "A clean selection of essentials. Quality-first, no endless browsing.",
+      bShop: "Shop",
+
+      kNews: "Newsletter",
+      tNews: "Weekly reset",
+      dNews: "One idea + one 5-minute practice. Minimal, practical, and easy to keep.",
+      bNews: "Subscribe",
+      nNews: "Hosted on Substack.",
+
+      k1to1: "1:1",
+      t1to1: "Private guidance",
+      d1to1: "A short, focused session to build a simple routine that fits your week.",
+      b1to1: "Book",
+      bWhatsApp: "WhatsApp"
     },
     es: {
-      headline: "Autocuidado moderno. Sin complicarlo.",
-      tagline: "Rituales pequeños y repetibles para bajar la activación diaria y sostener una higiene del sistema nervioso a largo plazo.",
-      shop: "Tienda",
-      advice: "Asesoramiento",
-      newsletterKicker: "Newsletter semanal",
-      newsletterCopy: "Una idea clara y un reset de 5 minutos. Minimal, realista y aplicable. Con una referencia suave a Night Calm.",
-      emailPlaceholder: "Tu email",
-      micro: "Sin spam. Baja cuando quieras.",
-      subscribe: "Suscribirme",
-      whatsapp: "WhatsApp"
+      headline: "Estructura premium para calmar lo moderno.",
+      tagline: "Rituales simples para la vida real — poco esfuerzo, repetibles y pensados para bajar la sobrecarga diaria.",
+
+      kShop: "Tienda",
+      tShop: "Mi tienda",
+      dShop: "Una selección clara de esenciales. Calidad primero, sin perder tiempo.",
+      bShop: "Tienda",
+
+      kNews: "Newsletter",
+      tNews: "Reset semanal",
+      dNews: "Una idea + una práctica de 5 minutos. Minimal, práctica y fácil de sostener.",
+      bNews: "Suscribirme",
+      nNews: "En Substack.",
+
+      k1to1: "1:1",
+      t1to1: "Acompañamiento privado",
+      d1to1: "Sesión corta y enfocada para crear una rutina simple que encaje en tu semana.",
+      b1to1: "Reservar",
+      bWhatsApp: "WhatsApp"
     },
     fr: {
-      headline: "Self-care moderne. Sans complication.",
-      tagline: "De petits rituels répétables pour réduire l’activation quotidienne et soutenir l’hygiène du système nerveux sur le long terme.",
-      shop: "Boutique",
-      advice: "Accompagnement",
-      newsletterKicker: "Newsletter hebdo",
-      newsletterCopy: "Une idée claire, un reset de 5 minutes. Minimal, réaliste, applicable. Avec une référence douce à Night Calm.",
-      emailPlaceholder: "Votre email",
-      micro: "Pas de spam. Désinscription à tout moment.",
-      subscribe: "S’abonner",
-      whatsapp: "WhatsApp"
+      headline: "Une structure premium pour un calme moderne.",
+      tagline: "Des rituels simples pour la vraie vie — peu d’effort, répétables, pensés pour réduire la surcharge du quotidien.",
+
+      kShop: "Boutique",
+      tShop: "Ma boutique",
+      dShop: "Une sélection claire d’essentiels. La qualité d’abord, sans perdre du temps.",
+      bShop: "Boutique",
+
+      kNews: "Newsletter",
+      tNews: "Reset hebdo",
+      dNews: "Une idée + une pratique de 5 minutes. Minimal, pratique, facile à garder.",
+      bNews: "S’abonner",
+      nNews: "Sur Substack.",
+
+      k1to1: "1:1",
+      t1to1: "Accompagnement privé",
+      d1to1: "Une session courte et ciblée pour construire une routine simple adaptée à ta semaine.",
+      b1to1: "Réserver",
+      bWhatsApp: "WhatsApp"
     }
   };
 
   function setLang(lang){
     document.documentElement.lang = lang;
 
-    // Buttons active state
     document.querySelectorAll(".lang button").forEach(b=>{
       b.classList.toggle("active", b.dataset.lang === lang);
     });
 
-    // Text nodes
     document.querySelectorAll("[data-i18n]").forEach(el=>{
       const key = el.getAttribute("data-i18n");
-      if(i18n[lang][key]) el.textContent = i18n[lang][key];
+      if(i18n[lang] && i18n[lang][key]) el.textContent = i18n[lang][key];
     });
 
-    // Placeholders
-    document.querySelectorAll("[data-i18n-placeholder]").forEach(el=>{
-      const key = el.getAttribute("data-i18n-placeholder");
-      if(i18n[lang][key]) el.setAttribute("placeholder", i18n[lang][key]);
-    });
-
-    // persist
     localStorage.setItem("consciella_lang", lang);
   }
 
-  // init from saved or browser
   const saved = localStorage.getItem("consciella_lang");
   const browser = (navigator.language || "en").slice(0,2);
   const initial = saved || (i18n[browser] ? browser : "en");
   setLang(initial);
 
-  // listeners
   document.querySelectorAll(".lang button").forEach(btn=>{
     btn.addEventListener("click", ()=> setLang(btn.dataset.lang));
   });
@@ -351,4 +414,3 @@ footer{
 
 </body>
 </html>
-
