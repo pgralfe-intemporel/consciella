@@ -1,225 +1,105 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Consciella</title>
-
-<style>
-  :root{
-    --bg:#f6f3ee;
-    --card:#ffffff;
-    --text:#1f1f1f;
-    --muted:#5a5a5a;
-    --line:#e7e2da;
-    --accent:#111;
-  }
-
-  *{box-sizing:border-box}
-  body{
-    margin:0;
-    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
-    background:var(--bg);
-    color:var(--text);
-  }
-  a{color:inherit;text-decoration:none}
-  .wrap{max-width:980px;margin:0 auto;padding:28px 20px 80px}
-  .nav{
-    display:flex;justify-content:space-between;align-items:center;
-    padding:10px 0 18px;border-bottom:1px solid var(--line);
-  }
-  .brand{
-    font-weight:600;letter-spacing:.12em;text-transform:uppercase;font-size:13px;
-  }
-  .nav a{font-size:13px;letter-spacing:.08em;margin-left:22px;color:var(--muted)}
-  .hero{
-    padding:54px 0 26px;
-    display:grid;grid-template-columns: 1.2fr .8fr;gap:26px;
-    align-items:stretch;
-  }
-  .panel{
-    background:var(--card);
-    border:1px solid var(--line);
-    border-radius:18px;
-    padding:34px;
-  }
-  h1{
-    margin:0 0 10px;
-    font-size:40px;
-    font-weight:500;
-    letter-spacing:-.02em;
-  }
-  .sub{
-    margin:0 0 18px;
-    color:var(--muted);
-    line-height:1.6;
-    font-size:16px;
-    max-width:52ch;
-  }
-  .pillrow{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 24px}
-  .pill{
-    border:1px solid var(--line);
-    background:#fbfaf7;
-    padding:8px 12px;
-    border-radius:999px;
-    font-size:12px;
-    color:var(--muted);
-  }
-  .cta{
-    display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:14px;
-  }
-  .btn{
-    display:inline-block;
-    padding:13px 18px;
-    border-radius:12px;
-    background:var(--accent);
-    color:white;
-    font-size:12px;
-    letter-spacing:.1em;
-    text-transform:uppercase;
-    border:1px solid var(--accent);
-  }
-  .btn.secondary{
-    background:transparent;color:var(--accent);
-  }
-  .note{
-    font-size:12px;color:var(--muted);line-height:1.5;margin-top:10px;
-  }
-
-  .side h2{
-    margin:0 0 12px;font-size:14px;letter-spacing:.12em;text-transform:uppercase;
-    color:var(--muted);font-weight:600;
-  }
-  .side .item{
-    border-top:1px solid var(--line);
-    padding:14px 0;
-    font-size:14px;
-    line-height:1.5;
-  }
-  .side .item b{font-weight:600}
-  .side .item:first-of-type{border-top:none;padding-top:0}
-
-  .sectionTitle{
-    margin:42px 0 14px;
-    font-size:14px;letter-spacing:.12em;text-transform:uppercase;
-    color:var(--muted);font-weight:600;
-  }
-  .grid{
-    display:grid;grid-template-columns:repeat(3,1fr);gap:18px;
-  }
-  .card{
-    background:var(--card);
-    border:1px solid var(--line);
-    border-radius:18px;
-    padding:22px;
-    min-height:180px;
-  }
-  .card h3{margin:0 0 10px;font-size:16px;font-weight:600}
-  .card p{margin:0;color:var(--muted);line-height:1.6;font-size:14px}
-  .list{
-    margin:12px 0 0;padding-left:18px;color:var(--muted);line-height:1.6;font-size:14px;
-  }
-  .footer{
-    text-align:center;margin-top:64px;
-    font-size:12px;color:var(--muted);
-    border-top:1px solid var(--line);
-    padding-top:22px;
-  }
-
-  @media (max-width: 900px){
-    .hero{grid-template-columns:1fr}
-    h1{font-size:30px}
-    .grid{grid-template-columns:1fr}
-  }
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Consciella</title>
+  <meta name="description" content="Consciella — structured, practical resets." />
+  <style>
+    :root{
+      --bg:#f6f3ee;
+      --card:#ffffff;
+      --text:#1f1f1f;
+      --muted:#5a5a5a;
+      --border:#e7e2da;
+      --btn:#111;
+      --btnText:#fff;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+    }
+    .wrap{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+    }
+    .card{
+      width:100%;
+      max-width:520px;
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:34px;
+      text-align:center;
+    }
+    .logo{
+      width:64px;
+      height:64px;
+      border-radius:16px;
+      border:1px solid var(--border);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin:0 auto 16px;
+      font-weight:700;
+      letter-spacing:.06em;
+      color:var(--muted);
+      user-select:none;
+    }
+    h1{
+      margin:0 0 10px;
+      font-size:28px;
+      font-weight:600;
+      letter-spacing:-.01em;
+    }
+    p{
+      margin:0 0 22px;
+      color:var(--muted);
+      line-height:1.5;
+      font-size:15px;
+    }
+    .btn{
+      display:inline-block;
+      width:100%;
+      padding:14px 16px;
+      border-radius:12px;
+      background:var(--btn);
+      color:var(--btnText);
+      text-decoration:none;
+      font-size:13px;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      border:1px solid var(--btn);
+    }
+    .hint{
+      margin-top:14px;
+      font-size:12px;
+      color:var(--muted);
+    }
+  </style>
 </head>
-
 <body>
-  <div class="wrap">
+  <main class="wrap">
+    <section class="card">
+      <!-- LOGO: replace this block with an <img> when you have the real logo -->
+      <div class="logo" aria-label="Consciella logo">C</div>
 
-    <div class="nav">
-      <div class="brand">Consciella</div>
-      <div>
-        <a href="#reset">5-Minute Reset</a>
-        <a href="#nightcalm">Night Calm</a>
-        <a href="https://consciella.substack.com/subscribe">Subscribe</a>
-      </div>
-    </div>
+      <h1>Consciella</h1>
+      <p>Simple structure for a calmer end of day.</p>
 
-    <section class="hero">
-      <div class="panel">
-        <h1>Structure for calmer evenings.</h1>
-        <p class="sub">
-          Consciella is a weekly, low-effort reset designed to reduce accumulated activation.
-          One email. One idea. One 5-minute ritual.
-        </p>
+      <!-- BUTTON: paste your newsletter URL in href -->
+      <a class="btn" href="PASTE_YOUR_NEWSLETTER_LINK_HERE">Subscribe</a>
 
-        <div class="pillrow">
-          <div class="pill">Low cognitive load</div>
-          <div class="pill">Small repeatable rituals</div>
-          <div class="pill">Preventive approach</div>
-          <div class="pill">Nervous system hygiene</div>
-        </div>
-
-        <div class="cta">
-          <a class="btn" href="https://consciella.substack.com/subscribe">Subscribe (free)</a>
-          <a class="btn secondary" href="#reset">See this week’s reset</a>
-        </div>
-
-        <div class="note">
-          No hype. No promises. Just practical structure you can repeat.
-        </div>
-      </div>
-
-      <div class="panel side">
-        <h2>What you get</h2>
-
-        <div class="item"><b>1.</b> A short observation you’ll recognize.</div>
-        <div class="item"><b>2.</b> A clear explanation (why it works).</div>
-        <div class="item"><b>3.</b> One 5-minute reset you can do tonight.</div>
-        <div class="item"><b>4.</b> A clean closing line to end the day.</div>
+      <div class="hint">
+        Replace <b>PASTE_YOUR_NEWSLETTER_LINK_HERE</b> with your Substack subscribe link.
       </div>
     </section>
-
-    <div class="sectionTitle" id="reset">This week’s 5-minute reset</div>
-    <div class="grid">
-      <div class="card">
-        <h3>Step 1 — Downshift (60s)</h3>
-        <p>Sit. Feet on the floor. Exhale longer than you inhale for 6 slow breaths.</p>
-      </div>
-
-      <div class="card">
-        <h3>Step 2 — Unload (2 min)</h3>
-        <p>Write 3 bullets:</p>
-        <ul class="list">
-          <li>What’s still “open” in my mind</li>
-          <li>What can wait until tomorrow</li>
-          <li>One next action (tiny)</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <h3>Step 3 — Close the day (2 min)</h3>
-        <p>Choose one closure cue: tidy one surface, set out tomorrow’s first item, or dim lights.</p>
-      </div>
-    </div>
-
-    <div class="sectionTitle" id="nightcalm">Night Calm (core ritual)</div>
-    <div class="panel" style="padding:24px;">
-      <p style="margin:0;color:var(--muted);line-height:1.7;font-size:14px;">
-        Night Calm is Consciella’s core weekly evening reset: a simple 5-minute structure to reduce daily activation
-        and prevent long-term overload. It’s designed to be repeatable, low-effort, and sustainable.
-      </p>
-      <div class="cta" style="margin-top:16px;">
-        <a class="btn" href="https://consciella.substack.com/subscribe">Get Night Calm weekly (free)</a>
-      </div>
-    </div>
-
-    <div class="footer">
-      © Consciella — practical structure for modern self-care.
-    </div>
-
-  </div>
+  </main>
 </body>
 </html>
-
